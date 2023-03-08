@@ -10,10 +10,13 @@ public class TitleScreenManager : MonoBehaviour
     private bool canStart;
     public string name;
     public GameObject StartButton;
+    public GameObject GameManager;
     // Start is called before the first frame update
     void Start()
     {
         canStart = false;
+        GameManager = GameObject.Find("Game Manager");
+        GameManager.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,8 +43,7 @@ public class TitleScreenManager : MonoBehaviour
     {
         if (canStart)
         {
-            Debug.Log("Started!");
-            // do whatever is needed to activate the game
+            GameManager.SetActive(true);
         }
     }
 }
