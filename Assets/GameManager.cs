@@ -160,13 +160,13 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-                public void Attack(Entity a)
+                public void Attack(Entity a) //abstraction
                 {
             a.SetHealth(a.GetHp() - damage);
                 }
 
             }
-    public class Player : Entity
+    public class Player : Entity //inheritance and polymorphism
     {
         int streak;
         public Player(string name, int health, int dmg) :base(name, health, dmg)
