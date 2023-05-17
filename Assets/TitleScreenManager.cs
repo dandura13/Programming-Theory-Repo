@@ -8,42 +8,51 @@ using UnityEngine.UI;
 public class TitleScreenManager : MonoBehaviour
 {
     private bool canStart;
-    public string name;
-    public GameObject StartButton;
+    private GameObject StartButton;
     public GameObject GameManager;
+    public GameObject TextBox;
+    public string name;
+    private GameObject TitleManager;
+    public GameManager MainManagerScript;
     // Start is called before the first frame update
     void Start()
     {
         canStart = false;
-        GameManager = GameObject.Find("Game Manager");
+        TitleManager = GameObject.Find("Title Screen Manager");
         GameManager.SetActive(false);
+        name = "Player";
+        TextBox = GameObject.Find("/Title Screen Manager/Canvas/Name Entry");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public void NameEntered()
+    public void CheckName()
     {
-        canStart=CheckName();
-    }
-    private bool CheckName()
-    {
-        for(int a =0; a < name.Length; a++)
+        if (TextBox.GetComponent<TMP_InputField>().text.Length > 15)
         {
-            if ((name.Substring(a, a + 1).ToUpper()).Equals(name.Substring(a, a + 1).ToLower()) && !(name.Substring(a, a + 1).Equals(" ")));
-            {
-                return false;
-            }
+            name = "Bob";
+            canStart = true;
+            Debug.Log("Name is too long. Default name set.");
         }
-        return true;
+        else
+        {
+            name = TextBox.GetComponent<TMP_InputField>().text;
+            canStart = true;
+            Debug.Log("Name set successfully.");
+        }
     }
-    public void StartGame()
+
+    void StartGame()
     {
         if (canStart)
         {
             GameManager.SetActive(true);
+            MainManagerScript.StartGame();
+            TitleManager.SetActive(false);
         }
     }
 }
