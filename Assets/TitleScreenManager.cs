@@ -30,7 +30,7 @@ public class TitleScreenManager : MonoBehaviour
     {
 
     }
-    public void CheckName()
+    public void CheckName() //encapsulation
     {
         if (TextBox.GetComponent<TMP_InputField>().text.Length > 15)
         {
